@@ -20,11 +20,13 @@ public class TodoItem {
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "parent_list_id")
+    private TodoList todoList;
+
     @Column(nullable = false, length = 35)
     private String itemName;
-
-    @Column(nullable = false)
-    private String content;
 
     @Column(nullable = false)
     private Boolean isCompleted;
@@ -47,7 +49,6 @@ public class TodoItem {
         return getClass().getSimpleName() + "(" +
                 "id = " + id + ", " +
                 "itemName = " + itemName + ", " +
-                "content = " + content + ", " +
                 "isCompleted = " + isCompleted + ")";
     }
 }

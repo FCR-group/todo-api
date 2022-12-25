@@ -1,11 +1,9 @@
 package group.fcr.todo_api.controller;
 
-import group.fcr.todo_api.model.dto.TodoItemResponse;
+import group.fcr.todo_api.model.dto.TodoListResponse;
 import group.fcr.todo_api.service.TodoItemService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,7 +20,8 @@ public class TodoController {
 //        this.repository = repository;
 //    }
     @GetMapping("/items")
-    public List<TodoItemResponse> findAllByName() {
-        return service.findAllByName();
+    @ResponseBody
+    public List<TodoListResponse> findAllByName(@RequestParam String name) {
+        return service.findAllByName(name);
     }
 }

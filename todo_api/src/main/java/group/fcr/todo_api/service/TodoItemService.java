@@ -1,9 +1,9 @@
 package group.fcr.todo_api.service;
 
-import group.fcr.todo_api.model.TodoItem;
-import group.fcr.todo_api.model.dto.TodoItemResponse;
-import group.fcr.todo_api.repository.TodoItemRepository;
-import group.fcr.todo_api.service.mapper.TodoItemMapper;
+import group.fcr.todo_api.model.TodoList;
+import group.fcr.todo_api.model.dto.TodoListResponse;
+import group.fcr.todo_api.repository.TodoListRepository;
+import group.fcr.todo_api.service.mapper.TodoListMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,20 +13,15 @@ import java.util.List;
 @AllArgsConstructor
 public class TodoItemService {
 
-    private final TodoItemRepository repository;
-    private final TodoItemMapper mapperService;
+    private final TodoListRepository repository;
+    private final TodoListMapper mapperService;
 
-    public List<TodoItemResponse> findAllByName() {
-        var item1 = TodoItem.builder()
-                .itemName("Primeiro Item da Minha To-Do")
-                .content("ABLUABLEUALDAUSKBLEUALBUA").isCompleted(true).build();
-
-        var item2 = TodoItem.builder()
-                .itemName("Segundo Item da Minha To-Do")
-                .content("ABLUABLEUALDAUSKBLEUALBUA").isCompleted(false).build();
+    public List<TodoListResponse> findAllByName(String name) {
+        var item1 = TodoList.builder()
+                .listName(name).build();
 
 
-        repository.saveAll(List.of(item1, item2));
+        repository.save(item1);
 
         return repository.findAllByName().stream().map(mapperService::mapToResponse).toList();
     }
