@@ -8,6 +8,11 @@ import org.springframework.stereotype.Service;
 public class TodoListMapper {
 
     public TodoListResponse mapToResponse(TodoList todoList) {
-        return new TodoListResponse(todoList.getListName(), todoList.getListItems(), todoList.getIsCompleted());
+        return new TodoListResponse(
+                todoList.getId(),
+                todoList.getListName(),
+                todoList.getListItems(),
+                todoList.getIsCompleted()
+        );
     }
 }

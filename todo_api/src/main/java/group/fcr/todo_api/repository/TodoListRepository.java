@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.UUID;
 
 @Repository
 public interface TodoListRepository extends JpaRepository<TodoList, Long> {
@@ -21,4 +22,7 @@ public interface TodoListRepository extends JpaRepository<TodoList, Long> {
 
     @Query("FROM TodoList list where list.listName=:name ")
     List<TodoList> findByName(@Param("name") String name);
+
+    @Query("FROM TodoList list where list.id=:id")
+    TodoList findListById(@Param("id") UUID id);
 }

@@ -3,12 +3,13 @@ package group.fcr.todo_api.controller;
 import group.fcr.todo_api.model.dto.TodoListResponse;
 import group.fcr.todo_api.service.TodoListService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
+import java.util.regex.Pattern;
 
 @AllArgsConstructor
 @RestController
@@ -35,6 +36,19 @@ public class TodoController {
     @GetMapping("/lists")
     public List<TodoListResponse> findAll() {
         return service.findAll();
+    }
+
+    @GetMapping("/list/delete")
+    @ResponseStatus
+    public ResponseEntity delete(@RequestParam String id) {
+        Pattern UUID_REGEX =
+                Pattern.compile("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$");
+
+        if (!UUID_REGEX.matcher(id).matches()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        UUID uuid = UUID.fromString(id);
+        return service.delete(service.findById(uuid));
     }
 
 }

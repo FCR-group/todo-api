@@ -5,7 +5,7 @@ import lombok.*;
 
 import java.util.List;
 
-import static jakarta.persistence.GenerationType.IDENTITY;
+import static jakarta.persistence.GenerationType.UUID;
 
 @Entity
 @Table(name = "todo_list")
@@ -17,8 +17,8 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 public class TodoList {
 
     @Id
-    @GeneratedValue(strategy = IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = UUID)
+    private java.util.UUID id;
 
     @Column(nullable = false, length = 25)
     private String listName;
