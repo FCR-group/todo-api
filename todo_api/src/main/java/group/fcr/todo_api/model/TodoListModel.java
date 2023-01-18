@@ -14,7 +14,7 @@ import static jakarta.persistence.GenerationType.UUID;
 @Getter
 @Setter
 @Builder
-public class TodoList {
+public class TodoListModel {
 
     @Id
     @GeneratedValue(strategy = UUID)
@@ -26,7 +26,7 @@ public class TodoList {
     @Column(nullable = false)
     private Boolean isCompleted;
 
-    @OneToMany(mappedBy = "todoList", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    private List<TodoItem> listItems;
+    @OneToMany(mappedBy = "todoListModel", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    private List<TodoItemModel> listItems;
 
 }

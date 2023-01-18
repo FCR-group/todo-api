@@ -15,7 +15,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Getter
 @Setter
 @Builder
-public class TodoItem {
+public class TodoItemModel {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
@@ -23,7 +23,7 @@ public class TodoItem {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "parent_list_id")
-    private TodoList todoList;
+    private TodoListModel todoListModel;
 
     @Column(nullable = false, length = 35)
     private String itemName;
@@ -35,8 +35,8 @@ public class TodoItem {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        TodoItem todoItem = (TodoItem) o;
-        return id != null && Objects.equals(id, todoItem.id);
+        TodoItemModel todoItemModel = (TodoItemModel) o;
+        return id != null && Objects.equals(id, todoItemModel.id);
     }
 
     @Override

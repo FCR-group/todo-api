@@ -1,13 +1,13 @@
 package group.fcr.todo_api.model.dto;
 
-import group.fcr.todo_api.model.TodoItem;
+import group.fcr.todo_api.model.TodoItemModel;
 
 import java.util.List;
 
-public record TodoListResponse(
+public record TodoListResponseDTO(
         java.util.UUID id,
         String listName,
-        List<TodoItem> todoItems,
+        List<TodoItemModel> todoItemModels,
         Boolean isCompleted
 ) {
 }
