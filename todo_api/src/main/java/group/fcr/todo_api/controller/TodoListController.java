@@ -15,7 +15,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api")
-public class TodoController {
+public class TodoListController {
     private final TodoListService todoListService;
     private final UtilsService utils;
 
