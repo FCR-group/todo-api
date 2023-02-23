@@ -7,7 +7,7 @@ import java.util.List;
 public record TodoListResponseDTO(
         java.util.UUID id,
         String listName,
-        List<TodoItemModel> todoItemModels,
+        List<TodoItemModel> listItems,
         Boolean isCompleted
 ) {
 }
